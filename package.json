@@ -1,22 +1,23 @@
 {
-  "name": "book-search-mcp-server",
+  "name": "book-mcp-server",
   "version": "1.0.0",
   "description": "a book searching mcp server for The Library",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx tsx api/server.ts"
   },
   "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.10.2",
     "fastmcp": "^1.22.4",
+    "postgres": "^3.4.5",
     "zod": "^3.24.3"
   },
   "devDependencies": {
     "@types/node": "^22.15.3",
+    "tsx": "^4.19.4",
     "typescript": "5.7.3"
   }
 }

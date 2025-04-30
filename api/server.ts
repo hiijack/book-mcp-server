@@ -1,5 +1,6 @@
 import { FastMCP } from 'fastmcp';
 import { z } from 'zod';
+import { fetchBook } from '../lib/data';
 
 const server = new FastMCP({
   name: 'book-searching-mcp-server',
@@ -12,10 +13,11 @@ server.addTool({
   parameters: z.object({
     type: z.string().array(),
   }),
-  execute: async (args) => {
-    // todo
-    console.log(args);
-    return JSON.stringify([{ name: '咖啡的历史', description: '介绍咖啡' }]);
+  execute: async ({ type }) => {
+    console.log(type);
+    const data = await fetchBook(type[0]);
+    console.log(data);
+    return JSON.stringify(data);
   },
 });
 
