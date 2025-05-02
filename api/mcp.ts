@@ -1,11 +1,11 @@
-import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp';
+import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { IncomingMessage, ServerResponse } from 'http';
 import { getServer } from '../lib/server';
 
 export async function POST(req: IncomingMessage, res: ServerResponse) {
   try {
     const server = getServer();
-    const transport: StreamableHTTPServerTransport = new StreamableHTTPServerTransport({
+    const transport = new StreamableHTTPServerTransport({
       sessionIdGenerator: undefined,
     });
     res.on('close', () => {
