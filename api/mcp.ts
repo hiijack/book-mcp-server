@@ -2,28 +2,35 @@ import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/
 import { IncomingMessage, ServerResponse } from 'http';
 import { getServer } from '../lib/server';
 
-async function handler(req: IncomingMessage, res: ServerResponse) {
-  try {
-    const server = getServer();
-    const transport = new StreamableHTTPServerTransport({
-      sessionIdGenerator: undefined,
-    });
-    res.on('close', () => {
-      transport.close();
-      server.close();
-    });
-    await server.connect(transport);
-    await transport.handleRequest(req, res);
-  } catch (error) {
-    console.error('Error handling MCP request:', error);
-    res.writeHead(500).end(JSON.stringify({ error: { message: 'Internel Server Error' } }));
+export async function handler(req: IncomingMessage, res: ServerResponse) {
+  const url = new URL(req.url);
+  if (url.pathname === '/mcp') {
+    if (req.method === 'GET') {
+      console.log('Received GET MCP request');
+      res.writeHead(405).end(
+        JSON.stringify({
+          message: 'method not allow',
+        })
+      );
+    } else if (req.method === 'DELETE') {
+      console.log('Received DELETE MCP request');
+      res.writeHead(405).end(
+        JSON.stringify({
+          message: 'method not allow',
+        })
+      );
+    }
+    try {
+      const server = getServer();
+      const transport = new StreamableHTTPServerTransport({
+        sessionIdGenerator: undefined,
+      });
+      await server.connect(transport);
+      await transport.handleRequest(req, res);
+    } catch (error) {
+      console.error('Error handling MCP request:', error);
+    }
+  } else if (url.pathname === '/sse') {
+    // todo
   }
-}
-
-export async function GET(req: IncomingMessage, res: ServerResponse) {
-  handler(req, res);
-}
-
-export async function POST(req: IncomingMessage, res: ServerResponse) {
-  handler(req, res);
 }
