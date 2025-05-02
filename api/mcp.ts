@@ -2,7 +2,7 @@ import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/
 import { IncomingMessage, ServerResponse } from 'http';
 import { getServer } from '../lib/server';
 
-export async function POST(req: IncomingMessage, res: ServerResponse) {
+async function handler(req: IncomingMessage, res: ServerResponse) {
   try {
     const server = getServer();
     const transport = new StreamableHTTPServerTransport({
@@ -18,4 +18,12 @@ export async function POST(req: IncomingMessage, res: ServerResponse) {
     console.error('Error handling MCP request:', error);
     res.writeHead(500).end(JSON.stringify({ error: { message: 'Internel Server Error' } }));
   }
+}
+
+export async function GET(req: IncomingMessage, res: ServerResponse) {
+  handler(req, res);
+}
+
+export async function POST(req: IncomingMessage, res: ServerResponse) {
+  handler(req, res);
 }
