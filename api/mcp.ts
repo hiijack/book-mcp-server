@@ -2,7 +2,7 @@ import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/
 import { IncomingMessage, ServerResponse } from 'http';
 import { getServer } from '../lib/server';
 
-export async function handler(req: IncomingMessage, res: ServerResponse) {
+export default async function handler(req: IncomingMessage, res: ServerResponse) {
   const url = new URL(req.url);
   if (url.pathname === '/mcp') {
     if (req.method === 'GET') {
