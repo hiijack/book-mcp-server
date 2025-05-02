@@ -3,7 +3,7 @@ import { IncomingMessage, ServerResponse } from 'http';
 import { getServer } from '../lib/server';
 
 export default async function handler(req: IncomingMessage, res: ServerResponse) {
-  const url = new URL(req.url);
+  const url = new URL(req.url, 'https://book-mcp-server.vercel.app');
   if (url.pathname === '/mcp') {
     if (req.method === 'GET') {
       console.log('Received GET MCP request');
