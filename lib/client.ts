@@ -2,7 +2,7 @@ import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 import { SSEClientTransport } from '@modelcontextprotocol/sdk/client/sse.js';
 
-const origin = process.argv[2] || 'http://localhost:8000';
+const origin = 'https://book-mcp-server.vercel.app';
 
 async function test() {
   let client: Client | undefined = undefined;

@@ -4,13 +4,13 @@
   "description": "a book searching mcp server for The Library",
   "main": "index.js",
   "scripts": {
-    "test": "npx tsx lib/client.ts https://book-mcp-server.vercel.app"
+    "test": "npx tsx lib/client.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.10.2",
+    "@modelcontextprotocol/sdk": "^1.11.0",
     "postgres": "^3.4.5",
     "zod": "^3.24.3"
   },
