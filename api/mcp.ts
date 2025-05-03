@@ -19,16 +19,23 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
           message: 'method not allow',
         })
       );
-    }
-    try {
-      const server = getServer();
-      const transport = new StreamableHTTPServerTransport({
-        sessionIdGenerator: undefined,
-      });
-      await server.connect(transport);
-      await transport.handleRequest(req, res);
-    } catch (error) {
-      console.error('Error handling MCP request:', error);
+    } else {
+      console.log('create new MCP connection:', req.url, req.headers, req.method);
+      try {
+        const server = getServer();
+        const transport = new StreamableHTTPServerTransport({
+          sessionIdGenerator: undefined,
+        });
+        res.on('close', () => {
+          console.log('Request closed');
+          transport.close();
+          server.close();
+        });
+        await server.connect(transport);
+        await transport.handleRequest(req, res);
+      } catch (error) {
+        console.error('Error handling MCP request:', error);
+      }
     }
   } else if (url.pathname === '/sse') {
     // todo
