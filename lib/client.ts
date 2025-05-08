@@ -1,6 +1,6 @@
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
-import { SSEClientTransport } from '@modelcontextprotocol/sdk/client/sse.js';
+// import { SSEClientTransport } from '@modelcontextprotocol/sdk/client/sse.js';
 
 const origin = 'https://book-mcp-server.vercel.app';
 
@@ -22,15 +22,17 @@ async function test() {
     console.log('Connected Streamable HTTP transport');
     console.log(result);
   } catch (error) {
+    console.log('failed to connect mcp server:', error);
+    // todo
     // If that fails with a 4xx error, try the older SSE transport
-    console.log('fall back to SSE transport');
-    client = new Client({
-      name: 'sse-client',
-      version: '1.0.0',
-    });
-    const sseTransport = new SSEClientTransport(new URL(`${origin}/sse`));
-    await client.connect(sseTransport);
-    console.log('Connected SSE');
+    // console.log('fall back to SSE transport');
+    // client = new Client({
+    //   name: 'sse-client',
+    //   version: '1.0.0',
+    // });
+    // const sseTransport = new SSEClientTransport(new URL(`${origin}/sse`));
+    // await client.connect(sseTransport);
+    // console.log('Connected SSE');
   }
 }
 

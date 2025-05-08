@@ -4,11 +4,15 @@
   "description": "a book searching mcp server for The Library",
   "main": "index.js",
   "scripts": {
-    "test": "npx tsx lib/client.ts"
+    "test": "npx tsx lib/client.ts",
+    "std-test": "npx tsx lib/std-client.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": ">=20.6.0"
+  },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.11.0",
     "postgres": "^3.4.5",
