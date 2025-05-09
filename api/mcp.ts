@@ -3,6 +3,16 @@ import { IncomingMessage, ServerResponse } from 'http';
 import { getServer } from '../lib/server';
 
 export default async function handler(req: IncomingMessage, res: ServerResponse) {
+  // todo auth
+  if (req.headers['origin'] !== 'book-mcp-server.vercel.app') {
+    console.log('deny req:', req.headers);
+    res.writeHead(403).end(
+      JSON.stringify({
+        message: 'forbidden',
+      })
+    );
+    return;
+  }
   const url = new URL(req.url, 'https://book-mcp-server.vercel.app');
   if (url.pathname === '/mcp') {
     if (req.method === 'GET') {
@@ -20,7 +30,7 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
         })
       );
     } else {
-      console.log('create new MCP connection:', req.url, req.headers, req.method);
+      console.log('create new MCP connection');
       try {
         const server = getServer();
         const transport = new StreamableHTTPServerTransport({
