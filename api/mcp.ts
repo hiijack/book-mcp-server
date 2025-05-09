@@ -4,7 +4,7 @@ import { getServer } from '../lib/server';
 
 export default async function handler(req: IncomingMessage, res: ServerResponse) {
   // todo auth
-  if (req.headers['origin'] !== 'book-mcp-server.vercel.app') {
+  if (req.headers.origin !== 'https://library.lunjz.top') {
     console.log('deny req:', req.headers);
     res.writeHead(403).end(
       JSON.stringify({
