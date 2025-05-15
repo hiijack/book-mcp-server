@@ -8,6 +8,12 @@ dependencies:
   '@modelcontextprotocol/sdk':
     specifier: ^1.11.0
     version: 1.11.0
+  '@vercel/edge':
+    specifier: ^1.2.1
+    version: 1.2.1
+  jose:
+    specifier: ^5.10.0
+    version: 5.10.0
   postgres:
     specifier: ^3.4.5
     version: 3.4.5
@@ -276,6 +282,10 @@ packages:
     dependencies:
       undici-types: 6.21.0
     dev: true
+
+  /@vercel/edge@1.2.1:
+    resolution: {integrity: sha512-1++yncEyIAi68D3UEOlytYb1IUcIulMWdoSzX2h9LuSeeyR7JtaIgR8DcTQ6+DmYOQn+5MCh6LY+UmK6QBByNA==}
+    dev: false
 
   /accepts@2.0.0:
     resolution: {integrity: sha512-5cvg6CtKwfgdmVqY1WIiXKc3Q1bkRqGLi+2W/6ao+6Y7gu/RCwRuAhGEzh5B4KlszSuTLgZYuqFqo5bImjNKng==}
@@ -628,6 +638,10 @@ packages:
 
   /isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
+    dev: false
+
+  /jose@5.10.0:
+    resolution: {integrity: sha512-s+3Al/p9g32Iq+oqXxkW//7jk2Vig6FF1CFqzVXoTUXt2qz89YWbL+OwS17NFYEvxC35n0FKeGO2LGYSxeM2Gg==}
     dev: false
 
   /math-intrinsics@1.1.0:

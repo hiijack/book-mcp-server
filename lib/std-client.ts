@@ -8,7 +8,7 @@ async function main() {
   });
 
   const client = new Client({
-    name: 'example-client',
+    name: 'std-client',
     version: '1.0.0',
   });
 
