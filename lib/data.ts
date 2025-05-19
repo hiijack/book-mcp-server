@@ -18,3 +18,15 @@ export async function fetchBook(query: string, currentPage: number = 1) {
     throw new Error('Failed to fetch book data.');
   }
 }
+
+export async function fetchPopularBook() {
+  try {
+    const data = await sql<Book[]>`SELECT * FROM book
+      ORDER BY book.view_count desc
+      LIMIT 5;`
+    return data;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch book data.');
+  }
+}

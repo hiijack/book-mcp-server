@@ -1,7 +1,8 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
-import { fetchBook } from './data';
+import { fetchBook, fetchPopularBook } from './data';
 
+// todo add find the most popular book
 export function getServer() {
   const server = new McpServer({
     name: 'book-searching-mcp-server',
@@ -15,10 +16,9 @@ export function getServer() {
       type: z.string().array(),
     },
     async ({ type }) => {
-      console.log(type);
+      console.log(type); // todo type array
       try {
         const data = await fetchBook(type[0]);
-        console.log(data);
         return {
           content: [
             {
@@ -40,5 +40,30 @@ export function getServer() {
       }
     }
   );
+
+  server.tool('get-popular-book', '查找热门的、最受欢迎的、最多人看的书', {}, async () => {
+    try {
+      const data = await fetchPopularBook();
+      return {
+        content: [
+          {
+            type: 'text',
+            text: JSON.stringify(data),
+          },
+        ],
+      };
+    } catch (error) {
+      console.log('call tool error:', error);
+      return {
+        content: [
+          {
+            type: 'text',
+            text: 'failed to get book',
+          },
+        ],
+      };
+    }
+  });
+
   return server;
 }
